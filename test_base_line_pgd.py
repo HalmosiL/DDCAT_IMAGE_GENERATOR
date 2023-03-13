@@ -378,8 +378,4 @@ def cal_acc(data_list, pred_folder, classes, names):
 
 
 if __name__ == '__main__':
-    try:
-        main()
-    except Exception as e:
-        with open('Failed.txt', 'w') as file:
-            file.write(str(e))
+    main()
