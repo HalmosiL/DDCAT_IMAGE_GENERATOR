@@ -142,7 +142,7 @@ def main():
     colors = np.loadtxt(args.colors_path).astype('uint8')
     names = [line.rstrip('\n') for line in open(args.names_path)]
 
-    DEV = True
+    DEV = False
 
     if not args.has_prediction:
         if not DEV:
