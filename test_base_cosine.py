@@ -97,7 +97,7 @@ def main():
 
     global MODEL_SLICE
 
-    DEV = True
+    DEV = False
 
     if not args.has_prediction:
         if not DEV:
