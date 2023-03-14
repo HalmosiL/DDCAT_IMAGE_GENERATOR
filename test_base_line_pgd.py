@@ -114,7 +114,7 @@ def main():
     logger.info("=> creating model ...")
     logger.info("Classes: {}".format(args.classes))
 
-    args.test_gpu[0] = os.environ['device']
+    args.test_gpu[0] = int(os.environ['device'])
     
     value_scale = 255
     mean = [0.485, 0.456, 0.406]
