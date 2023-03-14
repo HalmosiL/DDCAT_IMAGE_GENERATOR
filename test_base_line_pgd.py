@@ -26,8 +26,6 @@ def get_parser():
     parser.add_argument('opts', help='see config/conf.yaml for all options', default=None, nargs=argparse.REMAINDER)
     args = parser.parse_args()
     assert args.config is not None
-
-    args.test_gpu[0] = os.environ['device']
     
     global attack_flag
     attack_flag = True
@@ -116,6 +114,8 @@ def main():
     logger.info("=> creating model ...")
     logger.info("Classes: {}".format(args.classes))
 
+    args.test_gpu[0] = os.environ['device']
+    
     value_scale = 255
     mean = [0.485, 0.456, 0.406]
     mean = [item * value_scale for item in mean]
