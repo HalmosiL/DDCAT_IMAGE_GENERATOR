@@ -121,8 +121,6 @@ def main():
         cudnn.benchmark = True
         
         if(not DEV):
-            logger.info("=> loading checkpoint '{}'".format(args.model_path))
-
             if(os.environ['model'] == "ddcat"):
                 checkpoint = torch.load(args.model_path_ddcat, map_location="cuda:" + str(args.test_gpu[0]))
             elif(os.environ['model'] == "normal"):
