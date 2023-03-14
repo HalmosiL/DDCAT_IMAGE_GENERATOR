@@ -131,7 +131,6 @@ def main():
                 checkpoint = torch.load(args.model_path_sat, map_location="cuda:" + str(args.test_gpu[0]))
 
             model.load_state_dict(checkpoint['state_dict'], strict=False)
-            logger.info("=> loaded checkpoint '{}'".format(args.model_path))
 
         logger.info("Start Testing")
         test(test_loader, test_data.data_list, model, args.classes, mean, std, args.base_size, args.test_h, args.test_w, args.scales, gray_folder, color_folder, colors)
