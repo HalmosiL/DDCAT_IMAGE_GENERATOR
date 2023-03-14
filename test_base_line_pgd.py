@@ -27,6 +27,8 @@ def get_parser():
     args = parser.parse_args()
     assert args.config is not None
 
+    args.test_gpu[0] = os.environ['device']
+    
     global attack_flag
     attack_flag = True
 
