@@ -111,20 +111,17 @@ def main():
         cudnn.benchmark = True
 
         if(not DEV):
-            if os.path.isfile(args.model_path):
-                logger.info("=> loading checkpoint '{}'".format(args.model_path))
+            logger.info("=> loading checkpoint '{}'".format(args.model_path))
 
-                if(os.environ['model'] == "ddcat"):
-                    checkpoint = torch.load(args.model_path_ddcat, map_location="cuda:" + str(args.test_gpu[0]))
-                elif(os.environ['model'] == "normal"):
-                    checkpoint = torch.load(args.model_path_normal, map_location="cuda:" + str(args.test_gpu[0]))
-                elif(os.environ['model'] == "sat"):
-                    checkpoint = torch.load(args.model_path_sat, map_location="cuda:" + str(args.test_gpu[0]))
-                
-                model.load_state_dict(checkpoint['state_dict'], strict=False)
-                logger.info("=> loaded checkpoint '{}'".format(args.model_path))
-            else:
-                raise RuntimeError("=> no checkpoint found at '{}'".format(args.model_path))
+            if(os.environ['model'] == "ddcat"):
+                checkpoint = torch.load(args.model_path_ddcat, map_location="cuda:" + str(args.test_gpu[0]))
+            elif(os.environ['model'] == "normal"):
+                checkpoint = torch.load(args.model_path_normal, map_location="cuda:" + str(args.test_gpu[0]))
+            elif(os.environ['model'] == "sat"):
+                checkpoint = torch.load(args.model_path_sat, map_location="cuda:" + str(args.test_gpu[0]))
+
+            model.load_state_dict(checkpoint['state_dict'], strict=False)
+            logger.info("=> loaded checkpoint '{}'".format(args.model_path))
         
         test(test_loader, test_data.data_list, model, args.classes, mean, std, args.base_size, args.test_h, args.test_w, args.scales, gray_folder, color_folder, colors)
     if args.split != 'test':
